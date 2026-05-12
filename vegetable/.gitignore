@@ -1,0 +1,42 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+.next
+out
+dist
+dist-ssr
+*.local
+next-env.d.ts
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Editor temp/backup artifacts (Cursor/VSCode-style: foo.ts.tmp.<pid>.<ms>)
+*.tmp.*
+
+# Build artifacts
+tsconfig.tsbuildinfo
+
+# Tooling
+.claude/scheduled_tasks.lock
+
+# Raw source photos (processed into src/assets/ via scripts/process-source-photos.mjs)
+写真素材WH/
+
+# Environment variables
+.env

@@ -1,0 +1,466 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design system — Japanese traditional "和" style
+   Primary: 京紫 (Kyō-murasaki — classical Japanese purple)
+   All tokens HSL. */
+
+@layer base {
+  :root {
+    /* Base — clean washi-paper white with faint cream */
+    --background: 40 40% 98%;
+    --foreground: 270 20% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 270 20% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 270 20% 12%;
+
+    /* Primary: 深緑 fukamidori — deep fresh green (trust + freshness) */
+    --primary: 145 55% 22%;
+    --primary-foreground: 40 45% 98%;
+    --primary-glow: 110 45% 55%;
+
+    /* Secondary: soft cream, very light */
+    --secondary: 40 35% 96%;
+    --secondary-foreground: 270 20% 15%;
+
+    --muted: 270 15% 95%;
+    --muted-foreground: 270 8% 40%;
+
+    /* Accent: warm cream */
+    --accent: 30 55% 92%;
+    --accent-foreground: 25 60% 25%;
+
+    /* Traditional 和 color palette */
+    --murasaki: 280 55% 32%;       /* 紫 — deep purple */
+    --fuji: 260 40% 68%;            /* 藤 — wisteria */
+    --ajiro: 300 30% 50%;           /* plum-mauve */
+    --kincha: 35 70% 45%;           /* 金茶 — gold-brown */
+    --beni: 355 70% 55%;            /* 紅 — crimson */
+    --kuro: 270 20% 12%;            /* 黒 — sumi black */
+    --shiro: 40 45% 98%;            /* 白 — washi white */
+    --asagi: 195 55% 50%;           /* 浅葱 — pale blue */
+    --matcha: 95 35% 45%;           /* 抹茶 */
+
+    /* Legacy brand tokens mapped to wa palette */
+    --leaf: 95 35% 45%;
+    --earth: 25 45% 35%;
+    --cream: 40 50% 94%;
+    --sun: 45 85% 58%;              /* 山吹 yamabuki gold */
+    --sun-deep: 38 85% 48%;
+    --tomato: 355 70% 55%;
+    --sky: 195 55% 75%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 140 10% 88%;
+    --input: 140 10% 88%;
+    --ring: 145 55% 30%;
+
+    --radius: 0.5rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(180deg, hsl(145 55% 10% / 0.35) 0%, hsl(145 60% 6% / 0.88) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(145 55% 22%) 0%, hsl(130 50% 32%) 100%);
+    --gradient-soft: linear-gradient(180deg, hsl(40 40% 98%) 0%, hsl(40 35% 96%) 100%);
+    --gradient-leaf: linear-gradient(135deg, hsl(95 45% 50%) 0%, hsl(145 55% 22%) 100%);
+    --gradient-editorial: linear-gradient(135deg, hsl(145 55% 10%) 0%, hsl(145 50% 18%) 50%, hsl(145 45% 24%) 100%);
+    --gradient-sun: linear-gradient(135deg, hsl(45 85% 58%) 0%, hsl(38 85% 48%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(40 50% 94%) 0%, hsl(30 55% 88%) 100%);
+    --gradient-fresh: linear-gradient(135deg, hsl(95 55% 70%) 0%, hsl(145 55% 30%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 2px 12px -4px hsl(145 30% 20% / 0.08);
+    --shadow-card: 0 8px 30px -12px hsl(145 40% 20% / 0.15);
+    --shadow-elegant: 0 20px 60px -20px hsl(145 55% 20% / 0.25);
+    --shadow-pop: 0 30px 80px -20px hsl(45 80% 40% / 0.30);
+
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 140 8% 26%;
+    --sidebar-primary: 145 55% 22%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 140 15% 95%;
+    --sidebar-accent-foreground: 145 55% 22%;
+    --sidebar-border: 140 10% 86%;
+    --sidebar-ring: 145 55% 30%;
+  }
+
+  .dark {
+    --background: 150 25% 8%;
+    --foreground: 40 40% 94%;
+    --card: 150 25% 10%;
+    --card-foreground: 40 40% 94%;
+    --popover: 150 25% 10%;
+    --popover-foreground: 40 40% 94%;
+    --primary: 130 50% 58%;
+    --primary-foreground: 150 25% 10%;
+    --primary-glow: 110 45% 55%;
+    --secondary: 150 20% 16%;
+    --secondary-foreground: 40 40% 94%;
+    --muted: 150 20% 16%;
+    --muted-foreground: 90 10% 65%;
+    --accent: 25 30% 20%;
+    --accent-foreground: 30 50% 92%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 150 20% 20%;
+    --input: 150 20% 20%;
+    --ring: 130 50% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-feature-settings: "palt";
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4 {
+    @apply tracking-tight;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Gradient helpers */
+  .bg-gradient-hero { background-image: var(--gradient-hero); }
+  .bg-gradient-primary { background-image: var(--gradient-primary); }
+  .bg-gradient-soft { background-image: var(--gradient-soft); }
+  .bg-gradient-leaf { background-image: var(--gradient-leaf); }
+  .bg-gradient-editorial { background-image: var(--gradient-editorial); }
+  .bg-gradient-sun { background-image: var(--gradient-sun); }
+  .bg-gradient-warm { background-image: var(--gradient-warm); }
+  .bg-gradient-fresh { background-image: var(--gradient-fresh); }
+
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-pop { box-shadow: var(--shadow-pop); }
+  .transition-smooth { transition: var(--transition-smooth); }
+
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  /* --- TRADITIONAL JAPANESE PATTERNS (和柄) --- */
+
+  /* 青海波 — Seigaiha (wave scales) */
+  .wa-seigaiha {
+    background-color: transparent;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'><g fill='none' stroke='%232d5f3f' stroke-width='1.2' stroke-opacity='0.18'><path d='M0 40 C 10 20, 30 20, 40 40 C 50 20, 70 20, 80 40'/><path d='M0 30 C 10 10, 30 10, 40 30 C 50 10, 70 10, 80 30'/><path d='M0 20 C 10 0, 30 0, 40 20 C 50 0, 70 0, 80 20'/><path d='M0 10 C 10 -10, 30 -10, 40 10 C 50 -10, 70 -10, 80 10'/></g></svg>");
+    background-size: 80px 40px;
+    background-repeat: repeat;
+  }
+  .wa-seigaiha-light {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'><g fill='none' stroke='%23ffffff' stroke-width='1' stroke-opacity='0.10'><path d='M0 40 C 10 20, 30 20, 40 40 C 50 20, 70 20, 80 40'/><path d='M0 30 C 10 10, 30 10, 40 30 C 50 10, 70 10, 80 30'/><path d='M0 20 C 10 0, 30 0, 40 20 C 50 0, 70 0, 80 20'/><path d='M0 10 C 10 -10, 30 -10, 40 10 C 50 -10, 70 -10, 80 10'/></g></svg>");
+    background-size: 80px 40px;
+    background-repeat: repeat;
+  }
+
+  /* 麻の葉 — Asanoha (hemp leaf) */
+  .wa-asanoha {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='104' viewBox='0 0 60 104'><g fill='none' stroke='%232d5f3f' stroke-width='1' stroke-opacity='0.14'><path d='M30 0 L60 17.3 L60 52 L30 69.3 L0 52 L0 17.3 Z'/><path d='M30 0 L30 69.3'/><path d='M0 17.3 L60 52'/><path d='M60 17.3 L0 52'/><path d='M30 34.6 L0 17.3'/><path d='M30 34.6 L60 17.3'/><path d='M30 34.6 L0 52'/><path d='M30 34.6 L60 52'/><path d='M30 0 L0 52'/><path d='M30 0 L60 52'/><path d='M0 17.3 L30 69.3'/><path d='M60 17.3 L30 69.3'/></g></svg>");
+    background-size: 60px 104px;
+    background-repeat: repeat;
+  }
+  .wa-asanoha-light {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='104' viewBox='0 0 60 104'><g fill='none' stroke='%23ffffff' stroke-width='1' stroke-opacity='0.08'><path d='M30 0 L60 17.3 L60 52 L30 69.3 L0 52 L0 17.3 Z'/><path d='M30 0 L30 69.3'/><path d='M0 17.3 L60 52'/><path d='M60 17.3 L0 52'/><path d='M30 34.6 L0 17.3'/><path d='M30 34.6 L60 17.3'/><path d='M30 34.6 L0 52'/><path d='M30 34.6 L60 52'/><path d='M30 0 L0 52'/><path d='M30 0 L60 52'/><path d='M0 17.3 L30 69.3'/><path d='M60 17.3 L30 69.3'/></g></svg>");
+    background-size: 60px 104px;
+    background-repeat: repeat;
+  }
+
+  /* 七宝 — Shippou (interlocking circles) */
+  .wa-shippou {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'><g fill='none' stroke='%232d5f3f' stroke-width='1' stroke-opacity='0.13'><circle cx='30' cy='30' r='21'/><circle cx='0' cy='0' r='21'/><circle cx='60' cy='0' r='21'/><circle cx='0' cy='60' r='21'/><circle cx='60' cy='60' r='21'/></g></svg>");
+    background-size: 60px 60px;
+    background-repeat: repeat;
+  }
+  .wa-shippou-light {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'><g fill='none' stroke='%23ffffff' stroke-width='1' stroke-opacity='0.09'><circle cx='30' cy='30' r='21'/><circle cx='0' cy='0' r='21'/><circle cx='60' cy='0' r='21'/><circle cx='0' cy='60' r='21'/><circle cx='60' cy='60' r='21'/></g></svg>");
+    background-size: 60px 60px;
+    background-repeat: repeat;
+  }
+
+  /* 亀甲 — Kikkou (tortoiseshell hexagons) */
+  .wa-kikkou {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='98' viewBox='0 0 56 98'><g fill='none' stroke='%232d5f3f' stroke-width='1' stroke-opacity='0.25'><path d='M28 0 L56 16 L56 49 L28 65 L0 49 L0 16 Z'/><path d='M28 49 L56 65 L56 98 L28 114 L0 98 L0 65 Z'/></g></svg>");
+    background-size: 56px 98px;
+    background-repeat: repeat;
+  }
+
+  /* 矢絣 — Yagasuri (arrow feathers) */
+  .wa-yagasuri {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'><g fill='none' stroke='%232d5f3f' stroke-width='1.2' stroke-opacity='0.13'><path d='M0 10 L20 0 L20 20 L0 30 Z M20 0 L40 10 L40 30 L20 20 Z'/></g></svg>");
+    background-size: 40px 40px;
+    background-repeat: repeat;
+  }
+
+  /* 鱗 — Uroko (triangular scales) */
+  .wa-uroko {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='34.64' viewBox='0 0 40 34.64'><g fill='none' stroke='%232d5f3f' stroke-width='1' stroke-opacity='0.25'><path d='M0 0 L20 34.64 L40 0 Z'/><path d='M-20 34.64 L0 0 L20 34.64 Z M20 34.64 L40 0 L60 34.64 Z'/></g></svg>");
+    background-size: 40px 34.64px;
+    background-repeat: repeat;
+  }
+
+  /* 市松 — Ichimatsu (checkerboard) */
+  .wa-ichimatsu {
+    background-image:
+      linear-gradient(45deg, hsl(var(--primary) / 0.08) 25%, transparent 25%, transparent 75%, hsl(var(--primary) / 0.08) 75%),
+      linear-gradient(45deg, hsl(var(--primary) / 0.08) 25%, transparent 25%, transparent 75%, hsl(var(--primary) / 0.08) 75%);
+    background-size: 36px 36px;
+    background-position: 0 0, 18px 18px;
+  }
+
+  /* Existing patterns */
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .dot-pattern {
+    background-image: radial-gradient(circle at 2px 2px, hsl(var(--primary) / 0.12) 1px, transparent 0);
+    background-size: 28px 28px;
+  }
+  .dot-pattern-light {
+    background-image: radial-gradient(circle at 2px 2px, hsl(0 0% 100% / 0.08) 1px, transparent 0);
+    background-size: 32px 32px;
+  }
+  .grid-pattern {
+    background-image:
+      linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-left { transform: translateX(-28px); }
+  .reveal-left.is-visible { transform: none; }
+  .reveal-right { transform: translateX(28px); }
+  .reveal-right.is-visible { transform: none; }
+  .reveal-scale { transform: scale(0.94); }
+  .reveal-scale.is-visible { transform: scale(1); }
+
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+  .delay-400 { transition-delay: 400ms; }
+  .delay-500 { transition-delay: 500ms; }
+  .delay-700 { transition-delay: 700ms; }
+
+  /* Decorative blobs */
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.55;
+    pointer-events: none;
+    animation: blob-float 14s ease-in-out infinite;
+  }
+
+  /* Underline shimmer on hover */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Marquee */
+  .marquee {
+    display: flex;
+    overflow: hidden;
+    gap: 3rem;
+    mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+  }
+  .marquee__track {
+    display: flex;
+    gap: 3rem;
+    flex-shrink: 0;
+    min-width: 100%;
+    animation: marquee-scroll 45s linear infinite;
+  }
+
+  .float-slow { animation: float 8s ease-in-out infinite; }
+  .float-medium { animation: float 6s ease-in-out infinite; }
+  .float-fast { animation: float 4s ease-in-out infinite; }
+
+  .kenburns {
+    animation: kenburns 18s ease-in-out infinite alternate;
+  }
+
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 30%, hsl(0 0% 100% / 0.35) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.9s ease;
+    pointer-events: none;
+  }
+  .shine:hover::before { transform: translateX(100%); }
+
+  .wave-top {
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 1440 80'><path d='M0 40 C 240 0 480 80 720 40 C 960 0 1200 80 1440 40 L 1440 80 L 0 80 Z' fill='%23000'/></svg>");
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+  }
+
+  .tag-pill {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] tracking-[0.25em] uppercase font-medium;
+  }
+
+  /* Stamp — red hanko style corner tag */
+  .hanko {
+    font-family: "Noto Serif JP", serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: hsl(var(--beni));
+    color: hsl(var(--shiro));
+    padding: 0.6rem 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    box-shadow: 0 2px 10px -4px hsl(0 70% 30% / 0.5);
+    transform: rotate(-3deg);
+  }
+}
+
+/* Keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(2deg); }
+}
+
+@keyframes blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.08); }
+  66% { transform: translate(-20px, 30px) scale(0.96); }
+}
+
+@keyframes kenburns {
+  0% { transform: scale(1.05) translate(0, 0); }
+  100% { transform: scale(1.15) translate(-1.5%, -1%); }
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes bounce-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@layer utilities {
+  .pulse-soft { animation: pulse-soft 4s ease-in-out infinite; }
+  .gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 12s ease infinite;
+  }
+
+  /* Hover lift card */
+  .lift-card {
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .lift-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px -25px hsl(145 55% 20% / 0.30);
+  }
+
+  /* Hide scrollbar utility for horizontal scrollers on mobile */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
